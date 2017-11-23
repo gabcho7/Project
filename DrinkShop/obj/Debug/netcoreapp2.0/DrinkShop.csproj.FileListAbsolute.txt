@@ -1,0 +1,12 @@
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\bin\Debug\netcoreapp2.0\DrinkShop.deps.json
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\bin\Debug\netcoreapp2.0\DrinkShop.runtimeconfig.json
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\bin\Debug\netcoreapp2.0\DrinkShop.runtimeconfig.dev.json
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\bin\Debug\netcoreapp2.0\DrinkShop.dll
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\bin\Debug\netcoreapp2.0\DrinkShop.pdb
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\DrinkShop.csprojResolveAssemblyReference.cache
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\DrinkShop.csproj.CoreCompileInputs.cache
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\DrinkShop.AssemblyInfoInputs.cache
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\DrinkShop.AssemblyInfo.cs
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\DrinkShop.dll
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop\obj\Debug\netcoreapp2.0\DrinkShop.pdb
