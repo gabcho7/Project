@@ -21,8 +21,7 @@
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="Implementations\" />
-    <Folder Include="Services\" />
-    <Folder Include="Views\Drink\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

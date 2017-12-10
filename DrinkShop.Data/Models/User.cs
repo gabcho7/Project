@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace DrinkShop.Web.Models
+﻿namespace DrinkShop.Data.Models
 {
-    // Add profile data for application users by adding properties to the User class
+    using Microsoft.AspNetCore.Identity;
+    using System.Collections.Generic;
+
     public class User : IdentityUser
     {
+        public List<Order> Orders { get; set; } = new List<Order>();
 
+        //public ShoppingCart Cart { get; set; }
+        //public int CartId { get; set; }
     }
 }

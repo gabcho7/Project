@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace DrinkShop.Web.Models
+namespace DrinkShop.Data.Models
 {
     public class Category
     {
        public int CategoryId {get;set;}
-
-       public string CategoryName { get; set; }
+    
+       [Required]
+       public string Name { get; set; }
 
        public string Description { get; set; }
 

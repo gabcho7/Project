@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using DrinkShop.Web.Models;
+using DrinkShop.Data.Models;
 
-namespace DrinkShop.Web.Controllers
+namespace DrinkShop.Data.Controllers
 {
     public class HomeController : Controller
     {

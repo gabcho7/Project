@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using DrinkShop.Web.Models;
+using DrinkShop.Data.Models;
 using DrinkShop.Web.Models.AccountViewModels;
 
 
-namespace DrinkShop.Web.Controllers
+namespace DrinkShop.Data.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

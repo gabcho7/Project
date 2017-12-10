@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-namespace DrinkShop.Web.Infrastructure.Extentions
+namespace DrinkShop.Data.Infrastructure.Extentions
 {
     public static class ApplicationBuilderExtensions
     {

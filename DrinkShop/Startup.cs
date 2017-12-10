@@ -1,4 +1,4 @@
-﻿namespace DrinkShop.Web
+﻿namespace DrinkShop.Data
 { 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
@@ -6,8 +6,11 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using DrinkShop.Web.Models;
-    using DrinkShop.Web.Infrastructure.Extentions;
+    using DrinkShop.Data.Models;
+    using DrinkShop.Data.Infrastructure.Extentions;
+    using DrinkShop.Web.Services.Interfaces;
+    using DrinkShop.Web.Services;
+    using Microsoft.AspNetCore.Http;
 
     public class Startup
     {
@@ -21,10 +24,19 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Get data from static repository
+
+            services.AddTransient<IDrink, DrinkRepository>();
+            services.AddTransient<ICategory, CategoryRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>(options => {
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
 
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
@@ -58,8 +70,9 @@
 
             app.UseAuthentication();
 
-            
             app.UseMvcWithDefaultRoute();
+
+            
 
             //Default 
 

@@ -7,3 +7,5 @@ D:\SoftUni\OnlineShop\DrinkShop\DrinkShop.Data\obj\Debug\netstandard2.0\DrinkSho
 D:\SoftUni\OnlineShop\DrinkShop\DrinkShop.Data\bin\Debug\netstandard2.0\DrinkShop.Data.pdb
 D:\SoftUni\OnlineShop\DrinkShop\DrinkShop.Data\obj\Debug\netstandard2.0\DrinkShop.Data.dll
 D:\SoftUni\OnlineShop\DrinkShop\DrinkShop.Data\obj\Debug\netstandard2.0\DrinkShop.Data.pdb
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop.Data\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll
+D:\SoftUni\OnlineShop\DrinkShop\DrinkShop.Data\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.xml
