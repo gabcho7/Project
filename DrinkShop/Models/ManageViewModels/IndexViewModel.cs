@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrinkShop.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace DrinkShop.Web.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        public IEnumerable<Drink> PreferredDrinks { get; set; }
+
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }

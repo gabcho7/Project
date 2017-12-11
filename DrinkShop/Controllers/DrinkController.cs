@@ -1,4 +1,5 @@
-﻿using DrinkShop.Web.Models.DrinkViewModels;
+﻿using DrinkShop.Data.Models;
+using DrinkShop.Web.Models.DrinkViewModels;
 using DrinkShop.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,47 +21,47 @@ namespace DrinkShop.Data.Controllers
         }
 
 
-        public ViewResult List()
+        //public ViewResult List()
+        //{
+
+        //    DrinkListViewModel vm = new DrinkListViewModel();
+        //    vm.Drinks = _drinkRepository.Drinks;
+        //    //_drinkRepository.Seed();
+        //    vm.CurrentCategory = "DrinkCategory";
+
+        //    return View(vm);
+        //}
+
+
+
+
+        public ViewResult List(string category)
         {
-            
-            DrinkListViewModel vm = new DrinkListViewModel();
-            vm.Drinks = _drinkRepository.Drinks;
-            //_drinkRepository.Seed();
-            vm.CurrentCategory = "DrinkCategory";
+            string _category = category;
+            IEnumerable<Drink> drinks;
+            string currentCategory = string.Empty;
 
-            return View(vm);
+            if (string.IsNullOrEmpty(category))
+            {
+                drinks = _drinkRepository.Drinks.OrderBy(p => p.DrinkId);
+                currentCategory = "All drinks";
+            }
+            else
+            {
+                if (string.Equals("Alcoholic", _category, StringComparison.OrdinalIgnoreCase))
+                    drinks = _drinkRepository.Drinks.Where(p => p.Category.Name.Equals("Alcoholic")).OrderBy(p => p.Name);
+                else
+                    drinks = _drinkRepository.Drinks.Where(p => p.Category.Name.Equals("Non-alcoholic")).OrderBy(p => p.Name);
+
+                currentCategory = _category;
+            }
+
+            return View(new DrinkListViewModel
+            {
+                Drinks = drinks,
+                CurrentCategory = currentCategory
+            });
         }
-
-
-
-
-        //    public ViewResult List(string category)
-        //    {
-        //        string _category = category;
-        //        IEnumerable<Drink> drinks;
-        //        string currentCategory = string.Empty;
-
-        //        if (string.IsNullOrEmpty(category))
-        //        {
-        //            drinks = _drinkRepository.Drinks.OrderBy(p => p.DrinkId);
-        //            currentCategory = "All drinks";
-        //        }
-        //        else
-        //        {
-        //            if (string.Equals("Alcoholic", _category, StringComparison.OrdinalIgnoreCase))
-        //                drinks = _drinkRepository.Drinks.Where(p => p.Category.CategoryName.Equals("Alcoholic")).OrderBy(p => p.Name);
-        //            else
-        //                drinks = _drinkRepository.Drinks.Where(p => p.Category.CategoryName.Equals("Non-alcoholic")).OrderBy(p => p.Name);
-
-        //            currentCategory = _category;
-        //        }
-
-        //        return View(new DrinksListViewModel
-        //        {
-        //            Drinks = drinks,
-        //            CurrentCategory = currentCategory
-        //        });
-        //    }
 
         //    public ViewResult Search(string searchString)
         //    {

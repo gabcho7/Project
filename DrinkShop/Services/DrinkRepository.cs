@@ -20,9 +20,10 @@ namespace DrinkShop.Web.Services
 
         public IEnumerable<Drink> Drinks => _appDbContext.Drinks.Include(c => c.Category);
 
-        public IEnumerable<Drink> GetPreferredDrinks => _appDbContext.Drinks.Where(p => p.IsPreferredDrink).Include(c => c.Category);
+        public IEnumerable<Drink> PreferredDrinks => _appDbContext.Drinks.Where(p => p.IsPreferredDrink).Include(c => c.Category);
 
         public Drink GetDrinkById(int drinkId) => _appDbContext.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
+        
         //public void Seed ()
         //{
         //    ApplicationDbContext context = _appDbContext;

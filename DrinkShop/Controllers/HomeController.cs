@@ -5,14 +5,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DrinkShop.Data.Models;
+using DrinkShop.Web.Services.Interfaces;
+using DrinkShop.Web.Models.ManageViewModels;
 
 namespace DrinkShop.Data.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IDrink _drinkRepository;
+
+        public HomeController(IDrink drinkRepository)
         {
-            return View();
+            _drinkRepository = drinkRepository;
+        }
+
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+        public ViewResult Index()
+        {
+            
+            var indexViewModel = new IndexViewModel
+            {
+                PreferredDrinks = _drinkRepository.PreferredDrinks
+            };
+            return View(indexViewModel);
         }
 
         public IActionResult About()

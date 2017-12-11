@@ -21,8 +21,8 @@ namespace DrinkShop.Web.Controllers
             _shoppingCart = shoppingCart;
         }
 
-        [Authorize]
-        public ViewResult Index()
+        //[Authorize]
+        public IActionResult Index()
         {
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.CartItems = items;
@@ -35,7 +35,7 @@ namespace DrinkShop.Web.Controllers
             return View(shoppingCartViewModel);
         }
 
-        [Authorize]
+        //[Authorize]
         public RedirectToActionResult AddToShoppingCart(int drinkId)
         {
             var selectedDrink = _drinkRepository.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);

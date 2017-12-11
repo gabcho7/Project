@@ -24,8 +24,9 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             //Get data from static repository
-
+            
             services.AddTransient<IDrink, DrinkRepository>();
             services.AddTransient<ICategory, CategoryRepository>();
 
@@ -47,6 +48,8 @@
 
             // Add application services.
 
+            //Try to fix session exseption after adding shopping cart
+            services.AddSession();
             services.AddMvc();
         }
 
@@ -57,6 +60,7 @@
 
             if (env.IsDevelopment())
             {
+                app.UseSession();
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
@@ -67,21 +71,22 @@
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
+            //app.UseMvcWithDefaultRoute();
 
-            app.UseMvcWithDefaultRoute();
-
-            
 
             //Default 
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
+            
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "categoryFilter", template: "Drink/{action}/{category?}", defaults: new { Controller = "Drink", action="List" });
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DrinkShop.Web.Services.Interfaces
     {
         IEnumerable<Drink> Drinks { get; }
 
-        IEnumerable<Drink> GetPreferredDrinks { get; }
+        IEnumerable<Drink> PreferredDrinks { get; }
 
         Drink GetDrinkById(int drinkId);
 
