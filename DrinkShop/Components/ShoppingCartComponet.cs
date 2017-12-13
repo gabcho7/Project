@@ -10,7 +10,6 @@ namespace DrinkShop.Web.Components
 {
     [ViewComponent]
 
-
     public class ShoppingCartComponent : ViewComponent
     {
         private readonly ShoppingCart _shoppingCart;
@@ -21,7 +20,7 @@ namespace DrinkShop.Web.Components
 
         public IViewComponentResult Invoke()
         {
-            var items = new List<CartItem>() { new CartItem(), new CartItem() }/*_shoppingCart.GetShoppingCartItems()*/;
+            var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.CartItems = items;
 
             var shoppingCartViewModel = new ShoppingCartViewModel

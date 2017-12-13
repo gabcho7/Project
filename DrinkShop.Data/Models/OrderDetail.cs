@@ -11,7 +11,7 @@
         public int DrinkId { get; set; }
 
         [Required]
-        public int Quantity { get; set; }
+        public int Count { get; set; }
 
         [Required]
         public decimal Price { get; set; }

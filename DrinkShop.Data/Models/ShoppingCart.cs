@@ -11,7 +11,7 @@
 
    public class ShoppingCart
     {
-
+        
         public string ShoppingCartId { get; set; }
 
         public List<CartItem> CartItems { get; set; }

@@ -78,15 +78,14 @@ namespace DrinkShop.Data
             builder
                 .Entity<CartItem>()
                 .HasOne(ci => ci.ShoppingCart)
-                .WithMany(sc => sc.CartItems)
-                .HasForeignKey(ci => ci.ShoppingCartId);
+                .WithMany(sc => sc.CartItems);
+               
 
             builder
                 .Entity<OrderDetail>()
                 .HasOne(od => od.Order)
                 .WithMany(o => o.OrderDetails)
                 .HasForeignKey(od => od.OrderId);
-
 
             builder
                 .Entity<Order>()

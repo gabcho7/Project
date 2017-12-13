@@ -16,8 +16,7 @@ namespace DrinkShop.Data.Models
 
         public int DrinkId { get; set; }
 
-        public virtual ShoppingCart ShoppingCart { get; set; }
-
-        public virtual Drink Drink { get; set; }
+        public ShoppingCart ShoppingCart { get; set;}
+        public Drink Drink { get; set; }
     }
 }

@@ -14,14 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            @foreach (var line in Model.ShoppingCart.CartItems)
             {
                 <tr>
                     <td class="text-center">@line.Count</td>
                     <td class="text-left">@line.Drink.Name</td>
                     <td class="text-right">@line.Drink.Price.ToString("c")</td>
                     <td class="text-right">
-                        @((line.Amount * line.Drink.Price).ToString("c"))
+                        @((line.Count * line.Drink.Price).ToString("c"))
                     </td>
                     <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.Drink.DrinkId"></a></td>
                 </tr>

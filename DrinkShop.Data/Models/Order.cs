@@ -26,7 +26,7 @@ namespace DrinkShop.Data.Models
 
         [Required(ErrorMessage = "Please enter your address")]
         [StringLength(100)]
-        [Display(Name = "Address Line 1")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
       
         [StringLength(10)]

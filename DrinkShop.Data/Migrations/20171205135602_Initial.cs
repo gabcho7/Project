@@ -62,16 +62,16 @@ namespace DrinkShop.Data.Migrations
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ShoppingCart",
-                columns: table => new
-                {
-                    ShoppingCartId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShoppingCart", x => x.ShoppingCartId);
-                });
+            //migrationBuilder.CreateTable(
+            //    name: "ShoppingCart",
+            //    columns: table => new
+            //    {
+            //        ShoppingCartId = table.Column<string>(nullable: false)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_ShoppingCart", x => x.ShoppingCartId);
+            //    });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -241,8 +241,8 @@ namespace DrinkShop.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Count = table.Column<int>(nullable: false),
                     DrinkId = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    ShoppingCartId = table.Column<string>(nullable: true)
+                    Price = table.Column<decimal>(nullable: false)
+                    //ShoppingCartId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -253,12 +253,12 @@ namespace DrinkShop.Data.Migrations
                         principalTable: "Drinks",
                         principalColumn: "DrinkId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CartItems_ShoppingCart_ShoppingCartId",
-                        column: x => x.ShoppingCartId,
-                        principalTable: "ShoppingCart",
-                        principalColumn: "ShoppingCartId",
-                        onDelete: ReferentialAction.Restrict);
+                    //table.ForeignKey(
+                    //    name: "FK_CartItems_ShoppingCart_ShoppingCartId",
+                    //    column: x => x.ShoppingCartId,
+                    //    principalTable: "ShoppingCart",
+                    //    principalColumn: "ShoppingCartId",
+                    //    onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
