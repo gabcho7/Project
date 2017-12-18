@@ -5,10 +5,11 @@
 
     public class Drink
     {
-        //Primary key
+        
         public int DrinkId { get; set; }
 
         [Required]
+        [MinLength(3)]
         [MaxLength(50)]
         public string Name { get; set; }
 
@@ -31,15 +32,16 @@
 
         [Required]
         public bool IsPreferredDrink { get; set; }
-        [Required]
-        public int InStock { get; set; }
 
-        //Foreign key 
+        [Required]
+        public bool InStock { get; set; }
+
+        [Required]
         public int CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
-       
+        public Category Category { get; set; }
 
-        
+
+
     }
 }

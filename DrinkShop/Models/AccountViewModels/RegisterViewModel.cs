@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
    
     public class RegisterViewModel
-    {
+    { 
         [Required]
         [StringLength(50,MinimumLength = 3)]
         public string Username { get; set; }

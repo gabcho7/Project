@@ -5,14 +5,14 @@ namespace DrinkShop.Data.Models
     using Microsoft.AspNetCore.Mvc.ModelBinding;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
 
-    public class Order 
+    public class Order
     {
-        [BindNever]
         public int OrderId { get; set; }
 
-        public List<OrderDetail> OrderDetails { get; set; }
+        public string UserId { get; set; }
+
+        public User User { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First name")]
@@ -28,9 +28,10 @@ namespace DrinkShop.Data.Models
         [StringLength(100)]
         [Display(Name = "Address")]
         public string Address { get; set; }
-      
-        [StringLength(10)]
-        public string State { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string City { get; set; }
 
         [Required(ErrorMessage = "Please enter your country")]
         [StringLength(50)]
@@ -49,14 +50,11 @@ namespace DrinkShop.Data.Models
             ErrorMessage = "The email address is not entered in a correct format")]
         public string Email { get; set; }
 
-        [BindNever]
+        
         [ScaffoldColumn(false)]
         public decimal OrderTotal { get; set; }
 
-        public string UserId { get; set; }
-
-        public virtual User User { get; set; }
-
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     }
 

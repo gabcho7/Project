@@ -3676,9 +3676,9 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\SoftUni\\OnlineShop\\DrinkShop\\DrinkShop.Data\\DrinkShop.Data.csproj",
-      "projectName": "DrinkShop.Data",
-      "projectPath": "D:\\SoftUni\\OnlineShop\\DrinkShop\\DrinkShop.Data\\DrinkShop.Data.csproj",
+      "projectUniqueName": "D:\\SoftUni\\OnlineShop\\DrinkShop\\DrinkShop.Data\\DrinkShop.Data1.csproj",
+      "projectName": "DrinkShop.Data1",
+      "projectPath": "D:\\SoftUni\\OnlineShop\\DrinkShop\\DrinkShop.Data\\DrinkShop.Data1.csproj",
       "packagesPath": "C:\\Users\\Notebook\\.nuget\\packages\\",
       "outputPath": "D:\\SoftUni\\OnlineShop\\DrinkShop\\DrinkShop.Data\\obj\\",
       "projectStyle": "PackageReference",

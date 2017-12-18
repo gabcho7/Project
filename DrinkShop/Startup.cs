@@ -1,5 +1,6 @@
 ﻿namespace DrinkShop.Data
-{ 
+{
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,8 @@
     using DrinkShop.Web.Services.Interfaces;
     using DrinkShop.Web.Services;
     using Microsoft.AspNetCore.Http;
+    using DrinkShop.Web.Infrastructure.Extentions;
+    using Microsoft.AspNetCore.Mvc;
 
     public class Startup
     {
@@ -24,23 +27,26 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
             //Get data from static repository
-            
+
             services.AddTransient<IDrink, DrinkRepository>();
             services.AddTransient<ICategory, CategoryRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            //services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
 
                 options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
 
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -48,9 +54,13 @@
 
             // Add application services.
 
-            //Try to fix session exseption after adding shopping cart
+
+            //Try to fix session exception after adding shopping cart
             services.AddSession();
-            services.AddMvc();
+            services.AddAutoMapper();
+            services.AddDomainServices();
+            services.AddMvc(options =>
+            options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,12 +87,20 @@
 
             //Default 
 
-            
+
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "categoryFilter", template: "Drink/{action}/{category?}", defaults: new { Controller = "Drink", action="List" });
+                   name: "areas",
+                   template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+          );
+                routes.MapRoute(
+                    name: "categoryFilter", 
+                    template: "Drink/{action}/{category?}",
+                    defaults: new { Controller = "Drink",
+                    action = "List" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

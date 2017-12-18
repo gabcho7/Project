@@ -6,22 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DrinkShop.Web.Controllers
 {
-    public class OrderController : Controller
-    {
-        private readonly IOrder _orderRepository;
-        private readonly CartItem _shoppingCart;
+    //public class OrderController : Controller
+    //{
+    //    private readonly IOrder _orderRepository;
+    //    private readonly CartItem _shoppingCart;
 
-        public OrderController(IOrder orderRepository, CartItem shoppingCart)
-        {
-            _orderRepository = orderRepository;
-            _shoppingCart = shoppingCart;
-        }
+    //    public OrderController(IOrder orderRepository, CartItem shoppingCart)
+    //    {
+    //        _orderRepository = orderRepository;
+    //        _shoppingCart = shoppingCart;
+    //    }
 
-        [Authorize]
-        public IActionResult Checkout()
-        {
-            return View();
-        }
+    //    [Authorize]
+    //    public IActionResult Checkout()
+    //    {
+    //        return View();
+    //    }
 
         //[HttpPost]
         //[Authorize]
@@ -50,4 +50,4 @@ namespace DrinkShop.Web.Controllers
         //    return View();
         //}
     }
-}
+//}

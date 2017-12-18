@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using DrinkShop.Web
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -31,14 +33,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    
+
+                   @if (User.IsInRole(WebConstants.AdministratorRole))
+                   {
+                       <li><a asp-area="Admin" asp-controller="DrinksManage" asp-action="Create">Create</a></li>
+
+                   }
+
+
                     @await  Component.InvokeAsync("CategoryMenu")
 
                    
-                    @await Component.InvokeAsync("ShoppingCartComponent")
+                    @*@await Component.InvokeAsync("ShoppingCartComponent")*@
                 </ul>
+
                 @await Html.PartialAsync("_LoginPartial")
             </div>
            

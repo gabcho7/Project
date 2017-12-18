@@ -11,8 +11,8 @@ using System;
 namespace DrinkShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171205135602_Initial")]
-    partial class Initial
+    [Migration("20171215140806_Drinks")]
+    partial class Drinks
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,28 +20,6 @@ namespace DrinkShop.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("DrinkShop.Data.Models.CartItem", b =>
-                {
-                    b.Property<int>("CartItemId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Count");
-
-                    b.Property<int>("DrinkId");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<string>("ShoppingCartId");
-
-                    b.HasKey("CartItemId");
-
-                    b.HasIndex("DrinkId");
-
-                    b.HasIndex("ShoppingCartId");
-
-                    b.ToTable("CartItems");
-                });
 
             modelBuilder.Entity("DrinkShop.Data.Models.Category", b =>
                 {
@@ -55,7 +33,7 @@ namespace DrinkShop.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("DrinkShop.Data.Models.Drink", b =>
@@ -94,81 +72,6 @@ namespace DrinkShop.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Drinks");
-                });
-
-            modelBuilder.Entity("DrinkShop.Data.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<decimal>("OrderTotal");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(25);
-
-                    b.Property<string>("State")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("OrderId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("DrinkShop.Data.Models.OrderDetail", b =>
-                {
-                    b.Property<int>("OrderDetailId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("DrinkId");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("DrinkId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("DrinkShop.Data.Models.ShoppingCart", b =>
-                {
-                    b.Property<string>("ShoppingCartId")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("ShoppingCartId");
-
-                    b.ToTable("ShoppingCart");
                 });
 
             modelBuilder.Entity("DrinkShop.Data.Models.User", b =>
@@ -330,43 +233,11 @@ namespace DrinkShop.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DrinkShop.Data.Models.CartItem", b =>
-                {
-                    b.HasOne("DrinkShop.Data.Models.Drink", "Drink")
-                        .WithMany()
-                        .HasForeignKey("DrinkId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DrinkShop.Data.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("ShoppingCartId");
-                });
-
             modelBuilder.Entity("DrinkShop.Data.Models.Drink", b =>
                 {
                     b.HasOne("DrinkShop.Data.Models.Category", "Category")
                         .WithMany("Drinks")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DrinkShop.Data.Models.Order", b =>
-                {
-                    b.HasOne("DrinkShop.Data.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("DrinkShop.Data.Models.OrderDetail", b =>
-                {
-                    b.HasOne("DrinkShop.Data.Models.Drink", "Drink")
-                        .WithMany()
-                        .HasForeignKey("DrinkId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DrinkShop.Data.Models.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
