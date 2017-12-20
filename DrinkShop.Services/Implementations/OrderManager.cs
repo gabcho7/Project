@@ -56,12 +56,12 @@ namespace DrinkShop.Web.Services
             order.Country = country;
             order.Email = email;
             order.PhoneNumber = phoneNumber;
-           _appDbContext.Add(order);
+        
+            _appDbContext.Add(order);
             return order;
         }
 
         
-
         private OrderItem CreateOrderItem()
         {
             var orderItem = new OrderItem();
@@ -69,8 +69,9 @@ namespace DrinkShop.Web.Services
             return orderItem;
         }
 
+        
 
-        private Order TransformCartToOrder(Order order)
+    private Order TransformCartToOrder(Order order)
         {
             var cart = _shoppingCartManager.GetCart();
 
@@ -82,10 +83,11 @@ namespace DrinkShop.Web.Services
                 orderItem.Quantity = item.Quantity;
                 orderItem.DrinkPrice = item.Drink.Price * item.Quantity;
                 orderItem.DrinkId = item.Drink.DrinkId;
+                order.OrderTotal += orderItem.DrinkPrice;
                 _appDbContext.Add(orderItem);
             }
 
-
+           
             return order;
         }
     }

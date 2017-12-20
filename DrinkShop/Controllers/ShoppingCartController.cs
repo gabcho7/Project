@@ -20,7 +20,6 @@ namespace DrinkShop.Web.Controllers
         private readonly ApplicationDbContext db;
 
 
-
         public ShoppingCartController(IShoppingCartManager shoppingCartManager, ApplicationDbContext db)
         {
             this.shoppingCartManager = shoppingCartManager;
@@ -57,16 +56,6 @@ namespace DrinkShop.Web.Controllers
             return RedirectToAction(nameof(MyCart));
         }
 
-
-        //public RedirectToActionResult RemoveFromShoppingCart(int drinkId)
-        //{
-        //    var selectedDrink = _drinkRepository.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
-        //    if (selectedDrink != null)
-        //    {
-        //        _shoppingCart.RemoveFromCart(selectedDrink);
-        //    }
-        //    return RedirectToAction("Index");
-        //}
     }
 }
 
