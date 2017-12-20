@@ -1,53 +1,47 @@
 ﻿
 using DrinkShop.Data.Models;
-using DrinkShop.Web.Services.Interfaces;
+using DrinkShop.Services;
+using DrinkShop.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DrinkShop.Web.Controllers
 {
-    //public class OrderController : Controller
-    //{
-    //    private readonly IOrder _orderRepository;
-    //    private readonly CartItem _shoppingCart;
+    public class OrderController : Controller
+    {
+        private readonly IOrderManager _orderManager;
+       
 
-    //    public OrderController(IOrder orderRepository, CartItem shoppingCart)
-    //    {
-    //        _orderRepository = orderRepository;
-    //        _shoppingCart = shoppingCart;
-    //    }
+        public OrderController(IOrderManager orderManager
+            )
+        {
+            _orderManager = orderManager;
+        }
 
-    //    [Authorize]
-    //    public IActionResult Checkout()
-    //    {
-    //        return View();
-    //    }
+        [Authorize]
+        public IActionResult Checkout()
+        {
 
-        //[HttpPost]
-        //[Authorize]
-        //public IActionResult Checkout(Order order)
-        //{
-        //    var items = _shoppingCart.GetShoppingCartItems();
-        //    _shoppingCart.CartItems = items;
-        //    if (_shoppingCart.CartItems.Count == 0)
-        //    {
-        //        ModelState.AddModelError("", "Your card is empty, add some drinks first");
-        //    }
+            return View();
+        }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        _orderRepository.CreateOrder(order);
-        //        _shoppingCart.ClearCart();
-        //        return RedirectToAction("CheckoutComplete");
-        //    }
-
-        //    return View(order);
-        //}
-
-        //public IActionResult CheckoutComplete()
-        //{
-        //    ViewBag.CheckoutCompleteMessage = "Thanks for your order! :) ";
-        //    return View();
-        //}
+        [HttpPost]
+        [Authorize]
+        public IActionResult Checkout(string address, string firstName, string lastName, string city, string country, string phoneNumber, string email)
+        {
+            if (ModelState.IsValid)
+            {
+                _orderManager.CheckoutCart(address, firstName, lastName, city, country, phoneNumber, email);
+                return RedirectToAction("CheckoutComplete");
+            }
+            return RedirectToAction(nameof(Checkout));
+            
     }
-//}
+
+    public IActionResult CheckoutComplete()
+        {
+            ViewBag.CheckoutCompleteMessage = "Your order has been received!";
+            return View();
+        }
+    }
+}

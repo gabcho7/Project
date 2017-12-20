@@ -1,6 +1,6 @@
 ﻿using DrinkShop.Data.Controllers;
+using DrinkShop.Services;
 using DrinkShop.Services.Admin;
-using DrinkShop.Services.Contracts;
 using DrinkShop.Web.Areas.Admin.Models.Drinks;
 using DrinkShop.Web.Infrastructure.Extentions;
 using DrinkShop.Web.Models.DrinkViewModels;

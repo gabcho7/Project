@@ -1,6 +1,6 @@
 ﻿using DrinkShop.Data.Models;
 using DrinkShop.Web.Models.DrinkViewModels;
-using DrinkShop.Web.Services.Interfaces;
+using DrinkShop.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -81,15 +81,15 @@ namespace DrinkShop.Data.Controllers
         //        return View("~/Views/Drink/List.cshtml", new DrinksListViewModel { Drinks = drinks, CurrentCategory = "All drinks" });
         //    }
 
-        //    public ViewResult Details(int drinkId)
-        //    {
-        //        var drink = _drinkRepository.Drinks.FirstOrDefault(d => d.DrinkId == drinkId);
-        //        if (drink == null)
-        //        {
-        //            return View("~/Views/Error/Error.cshtml");
-        //        }
-        //        return View(drink);
-        //    }
+        public ViewResult Details(int drinkId)
+        {
+            var drink = _drinkRepository.Drinks.FirstOrDefault(d => d.DrinkId == drinkId);
+            if (drink == null)
+            {
+                return View("~/Views/Error/Error.cshtml");
+            }
+            return View(drink);
+        }
         //}
     }
 }

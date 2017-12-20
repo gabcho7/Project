@@ -1,4 +1,4 @@
-﻿using DrinkShop.Services.Contracts;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,10 +22,10 @@ namespace DrinkShop.Services.Implementations
             return this.db.Categories.ToList();
         }
 
-        public bool Create()
-        {
+        //public bool Create()
+        //{
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

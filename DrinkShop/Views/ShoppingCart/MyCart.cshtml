@@ -6,24 +6,31 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Selected amount</th>
                 <th>Drink</th>
                 <th class="text-right">Price</th>
                 <th class="text-right">Subtotal</th>
-                <th></th>
+                <th>Quantity</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var line in Model.ShoppingCart.CartItems)
+            @foreach (var line in Model.CartItems)
             {
-                <tr>
-                    <td class="text-center">@line.Count</td>
+                <tr>                    
                     <td class="text-left">@line.Drink.Name</td>
                     <td class="text-right">@line.Drink.Price.ToString("c")</td>
                     <td class="text-right">
-                        @((line.Count * line.Drink.Price).ToString("c"))
+                        @line.Price
                     </td>
-                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.Drink.DrinkId"></a></td>
+                    <td><form method="post" action="/ShoppingCart/UpdateItem">
+                            <input type="hidden" name="drinkId" value="@line.Drink.DrinkId" />
+                            <input type="number" min="0" name="quantity" value="@line.Quantity"  />
+                            <button type="submit">Update Quantity</button>
+                        </form></td>
+                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove"
+                asp-controller="ShoppingCart" 
+                asp-action="RemoveFromCart" 
+                asp-route-drinkId="@line.Drink.DrinkId"></a></td>
                 </tr>
             }
         </tbody>

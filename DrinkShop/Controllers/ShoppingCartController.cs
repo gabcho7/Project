@@ -1,60 +1,72 @@
 ﻿using DrinkShop.Data.Models;
 using DrinkShop.Web.Models.ShoppingCartViewModels;
-using DrinkShop.Web.Services.Interfaces;
+using DrinkShop.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using DrinkShop.Services.Models;
+using DrinkShop.Web.Infrastructure.Extentions;
+using DrinkShop.Data;
 
-//namespace DrinkShop.Web.Controllers
-//{
-    //public class ShoppingCartController : Controller
-    //{
-    //    private readonly IDrink _drinkRepository;
-    //    private readonly ShoppingCart _shoppingCart;
+namespace DrinkShop.Web.Controllers
+{
+    public class ShoppingCartController : Controller
+    {
+        private readonly IShoppingCartManager shoppingCartManager;
+        private readonly ApplicationDbContext db;
 
-    //    public ShoppingCartController(IDrink drinkRepository, ShoppingCart shoppingCart)
-    //    {
-    //        _drinkRepository = drinkRepository;
-    //        _shoppingCart = shoppingCart;
-    //    }
 
-        //[Authorize]
-        //public IActionResult Index()
+
+        public ShoppingCartController(IShoppingCartManager shoppingCartManager, ApplicationDbContext db)
+        {
+            this.shoppingCartManager = shoppingCartManager;
+            this.db = db;
+
+        }
+
+        public IActionResult MyCart()
+        {
+            var cart = shoppingCartManager.GetCart();
+            return View(new ShoppingCartViewModel() { CartItems = cart.Items, ShoppingCartTotal = cart.Total });
+        }
+
+        public IActionResult AddToCart(int DrinkId, int quantity = 1)
+        {
+            Drink drink = db.Drinks.First(d => d.DrinkId == DrinkId);
+            CartItem cartItem = shoppingCartManager.CreateCartItem(drink, quantity);
+            this.shoppingCartManager.AddToCart(cartItem);
+            return RedirectToAction(nameof(MyCart));
+        }
+
+        public IActionResult RemoveFromCart(int DrinkId)
+        {
+            Drink drink = db.Drinks.First(d => d.DrinkId == DrinkId);
+            this.shoppingCartManager.RemoveFromCart(drink);
+            return RedirectToAction(nameof(MyCart));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateItem(int drinkId, int quantity)
+        {
+            Drink drink = db.Drinks.First(d => d.DrinkId == drinkId);
+            shoppingCartManager.UpdateItem(drink, quantity);
+            return RedirectToAction(nameof(MyCart));
+        }
+
+
+        //public RedirectToActionResult RemoveFromShoppingCart(int drinkId)
         //{
-        //    var items = _shoppingCart.GetShoppingCartItems();
-        //    _shoppingCart.CartItems = items;
-
-        //    var shoppingCartViewModel = new ShoppingCartViewModel
+        //    var selectedDrink = _drinkRepository.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
+        //    if (selectedDrink != null)
         //    {
-        //        ShoppingCart = _shoppingCart,
-        //        ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
-        //    };
-        //    return View(shoppingCartViewModel);
+        //        _shoppingCart.RemoveFromCart(selectedDrink);
+        //    }
+        //    return RedirectToAction("Index");
         //}
-
-        //[Authorize]
-    //    public RedirectToActionResult AddToShoppingCart(int drinkId)
-    //    {
-    //        var selectedDrink = _drinkRepository.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
-    //        if (selectedDrink != null)
-    //        {
-    //            _shoppingCart.AddToCart(selectedDrink, 1);
-    //        }
-    //        return RedirectToAction("Index");
-    //    }
-
-    //    public RedirectToActionResult RemoveFromShoppingCart(int drinkId)
-    //    {
-    //        var selectedDrink = _drinkRepository.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
-    //        if (selectedDrink != null)
-    //        {
-    //            _shoppingCart.RemoveFromCart(selectedDrink);
-    //        }
-    //        return RedirectToAction("Index");
-    //    }
-    //}
-//}
+    }
+}
 

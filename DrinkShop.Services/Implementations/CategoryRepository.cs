@@ -1,12 +1,11 @@
 ﻿using DrinkShop.Data;
 using DrinkShop.Data.Models;
-using DrinkShop.Web.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DrinkShop.Web.Services
+namespace DrinkShop.Services
 {
     public class CategoryRepository : ICategory
     {

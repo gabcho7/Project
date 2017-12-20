@@ -1,6 +1,6 @@
 ﻿using DrinkShop.Data;
 using DrinkShop.Data.Models;
-using DrinkShop.Web.Services.Interfaces;
+using DrinkShop.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,19 +11,20 @@ namespace DrinkShop.Web.Services
 {
     public class DrinkRepository : IDrink
     {
-        private readonly ApplicationDbContext _appDbContext;
+        private readonly ApplicationDbContext appDbContext;
 
         public DrinkRepository(ApplicationDbContext appDbContext)
         {
-            _appDbContext = appDbContext;
+            this.appDbContext = appDbContext;
         }
 
-        public IEnumerable<Drink> Drinks => _appDbContext.Drinks.Include(c => c.Category);
+        public IEnumerable<Drink> Drinks => appDbContext.Drinks.Include(c => c.Category);
 
-        public IEnumerable<Drink> PreferredDrinks => _appDbContext.Drinks.Where(p => p.IsPreferredDrink).Include(c => c.Category);
+        public IEnumerable<Drink> PreferredDrinks => appDbContext.Drinks.Where(p => p.IsPreferredDrink).Include(c => c.Category);
 
-        public Drink GetDrinkById(int drinkId) => _appDbContext.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
+        public Drink GetDrinkById(int drinkId) => appDbContext.Drinks.FirstOrDefault(p => p.DrinkId == drinkId);
         
+
         //public void Seed ()
         //{
         //    ApplicationDbContext context = _appDbContext;

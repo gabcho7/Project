@@ -20,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Implementations\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DrinkShop.Common\DrinkShop.Common.csproj" />
     <ProjectReference Include="..\DrinkShop.Data\DrinkShop.Data.csproj" />
     <ProjectReference Include="..\DrinkShop.Services\DrinkShop.Services.csproj" />

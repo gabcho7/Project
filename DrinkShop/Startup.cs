@@ -9,11 +9,12 @@
     using Microsoft.Extensions.DependencyInjection;
     using DrinkShop.Data.Models;
     using DrinkShop.Data.Infrastructure.Extentions;
-    using DrinkShop.Web.Services.Interfaces;
+    using DrinkShop.Services;
     using DrinkShop.Web.Services;
     using Microsoft.AspNetCore.Http;
     using DrinkShop.Web.Infrastructure.Extentions;
     using Microsoft.AspNetCore.Mvc;
+    using DrinkShop.Services.Implementations;
 
     public class Startup
     {
@@ -28,12 +29,9 @@
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //Get data from static repository
-
             services.AddTransient<IDrink, DrinkRepository>();
             services.AddTransient<ICategory, CategoryRepository>();
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+          
             //services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -53,12 +51,12 @@
                 .AddDefaultTokenProviders();
 
             // Add application services.
-
-
-            //Try to fix session exception after adding shopping cart
+            
             services.AddSession();
             services.AddAutoMapper();
             services.AddDomainServices();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IShoppingCartManager, ShoppingCartManager>();
             services.AddMvc(options =>
             options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>());
         }
@@ -86,8 +84,6 @@
 
 
             //Default 
-
-
 
             app.UseMvc(routes =>
             {
