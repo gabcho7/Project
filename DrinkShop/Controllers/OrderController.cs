@@ -4,6 +4,7 @@ using DrinkShop.Services;
 using DrinkShop.Services.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace DrinkShop.Web.Controllers
 {
@@ -27,14 +28,15 @@ namespace DrinkShop.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Checkout(string address, string firstName, string lastName, string city, string country, string phoneNumber, string email)
+        public IActionResult Checkout(Order order)
         {
             if (ModelState.IsValid)
-            {
-                _orderManager.CheckoutCart(address, firstName, lastName, city, country, phoneNumber, email);
+            { 
+                _orderManager.CheckoutCart(order.Address, order.FirstName, order.LastName, order.City, order.Country, order.PhoneNumber, order.Email);
                 return RedirectToAction("CheckoutComplete");
             }
-            return RedirectToAction(nameof(Checkout));
+        
+            return View(order);
             
     }
 
