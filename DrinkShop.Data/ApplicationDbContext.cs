@@ -7,7 +7,6 @@ namespace DrinkShop.Data
    
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-
         public DbSet<Drink> Drinks { get; set; }
 
         public DbSet<Category> Categories { get; set; }
@@ -15,7 +14,6 @@ namespace DrinkShop.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
-
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -43,8 +41,6 @@ namespace DrinkShop.Data
                 .HasMany(o => o.OrderItems)
                 .WithOne(i => i.Order)
                 .HasForeignKey(i => i.OrderId);
-
-
 
             base.OnModelCreating(builder);
            

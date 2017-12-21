@@ -18,7 +18,8 @@ namespace DrinkShop.Services.Implementations
         public void Create(
             string name,
             string shortDescription, 
-            string longDescription, decimal price, 
+            string longDescription, 
+            decimal price, 
             string imageUrl, 
             string imageThumbnail, 
             bool isPreferredDrink, 
@@ -32,6 +33,7 @@ namespace DrinkShop.Services.Implementations
                 LongDescription = longDescription,
                 ImageUrl = imageUrl,
                 ImageThumbnail = imageThumbnail,
+                Price = price,
                 IsPreferredDrink = isPreferredDrink,
                 InStock = inStock,
                 CategoryId = categoryId

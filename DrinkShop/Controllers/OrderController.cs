@@ -1,5 +1,4 @@
-﻿
-using DrinkShop.Data.Models;
+﻿using DrinkShop.Data.Models;
 using DrinkShop.Services;
 using DrinkShop.Services.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +31,7 @@ namespace DrinkShop.Web.Controllers
         {
             if (ModelState.IsValid)
             { 
+                
                 _orderManager.CheckoutCart(order.Address, order.FirstName, order.LastName, order.City, order.Country, order.PhoneNumber, order.Email);
                 return RedirectToAction("CheckoutComplete");
             }

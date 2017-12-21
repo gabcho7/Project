@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DrinkShop.Services
 {
-   public interface ICategoryManager
+    public interface ICategoryManager
     {
         IEnumerable<Category> GetAllCategories();
-        //bool Create();
+
     }
 }

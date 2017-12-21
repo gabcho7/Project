@@ -5,35 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DrinkShop.Data.Controllers
 {
     public class DrinkController : Controller
     {
-        private readonly IDrink _drinkRepository;
-        private readonly ICategory _categoryRepository;
+        private readonly IDrinkRepository _drinkRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public DrinkController(IDrink drinkRepository, ICategory categoryRepository)
+        public DrinkController(IDrinkRepository drinkRepository, ICategoryRepository categoryRepository)
         {
             _drinkRepository = drinkRepository;
             _categoryRepository = categoryRepository;
         }
-
-
-        //public ViewResult List()
-        //{
-
-        //    DrinkListViewModel vm = new DrinkListViewModel();
-        //    vm.Drinks = _drinkRepository.Drinks;
-        //    //_drinkRepository.Seed();
-        //    vm.CurrentCategory = "DrinkCategory";
-
-        //    return View(vm);
-        //}
-
-
-
 
         public ViewResult List(string category)
         {
@@ -59,27 +43,10 @@ namespace DrinkShop.Data.Controllers
             return View(new DrinkListViewModel
             {
                 Drinks = drinks,
-                CurrentCategory = currentCategory
+                CurrentCategory = currentCategory,
+                
             });
         }
-
-        //    public ViewResult Search(string searchString)
-        //    {
-        //        string _searchString = searchString;
-        //        IEnumerable<Drink> drinks;
-        //        string currentCategory = string.Empty;
-
-        //        if (string.IsNullOrEmpty(_searchString))
-        //        {
-        //            drinks = _drinkRepository.Drinks.OrderBy(p => p.DrinkId);
-        //        }
-        //        else
-        //        {
-        //            drinks = _drinkRepository.Drinks.Where(p => p.Name.ToLower().Contains(_searchString.ToLower()));
-        //        }
-
-        //        return View("~/Views/Drink/List.cshtml", new DrinksListViewModel { Drinks = drinks, CurrentCategory = "All drinks" });
-        //    }
 
         public ViewResult Details(int drinkId)
         {
@@ -90,7 +57,6 @@ namespace DrinkShop.Data.Controllers
             }
             return View(drink);
         }
-        //}
     }
 }
 

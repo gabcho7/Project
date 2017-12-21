@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DrinkShop.Services
 {
-    public class CategoryRepository : ICategory
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly ApplicationDbContext _appDbContext;
         public CategoryRepository(ApplicationDbContext appDbContext)

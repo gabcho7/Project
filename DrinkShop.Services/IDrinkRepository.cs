@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace DrinkShop.Services
 {
-    public interface IDrink
+    public interface IDrinkRepository
     {
         IEnumerable<Drink> Drinks { get; }
 
         IEnumerable<Drink> PreferredDrinks { get; }
 
         Drink GetDrinkById(int drinkId);
+
 
         //void Seed();
     }

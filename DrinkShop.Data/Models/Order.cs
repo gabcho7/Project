@@ -51,7 +51,6 @@ namespace DrinkShop.Data.Models
         public string Email { get; set; }
 
         
-        [ScaffoldColumn(false)]
         public decimal OrderTotal { get; set; }
 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

@@ -1,8 +1,5 @@
 ﻿using DrinkShop.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DrinkShop.Web.Models.DrinkViewModels
 {
@@ -11,5 +8,7 @@ namespace DrinkShop.Web.Models.DrinkViewModels
         public IEnumerable<Drink> Drinks { get; set; }
 
         public string CurrentCategory { get; set; }
+
+       
     }
 }

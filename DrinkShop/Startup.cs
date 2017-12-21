@@ -29,10 +29,9 @@
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddTransient<IDrink, DrinkRepository>();
-            services.AddTransient<ICategory, CategoryRepository>();
+            services.AddTransient<IDrinkRepository, DrinkRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
           
-            //services.AddScoped(sp => ShoppingCart.GetCart(sp));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

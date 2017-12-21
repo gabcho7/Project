@@ -12,19 +12,15 @@ namespace DrinkShop.Data.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDrink _drinkRepository;
+        private readonly IDrinkRepository _drinkRepository;
         private readonly IShoppingCartManager _sm;
 
-        public HomeController(IDrink drinkRepository, IShoppingCartManager sm)
+        public HomeController(IDrinkRepository drinkRepository, IShoppingCartManager sm)
         {
             _drinkRepository = drinkRepository;
             this._sm = sm;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
         public ViewResult Index()
         {
             var indexViewModel = new IndexViewModel
@@ -32,20 +28,6 @@ namespace DrinkShop.Data.Controllers
                 PreferredDrinks = _drinkRepository.PreferredDrinks
             };
             return View(indexViewModel);
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
         }
 
         public IActionResult Error()

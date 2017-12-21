@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DrinkShop.Services.Models
 {
@@ -14,11 +12,5 @@ namespace DrinkShop.Services.Models
             Items = new List<CartItem>();
         }
 
-        //public IEnumerable<CartItem> CartItems => new List<CartItem>(this.Items);
-
-        //public void AddToCart(CartItem item)
-        //{
-        //    this.Items.Add(item);
-        //}
     }
 }

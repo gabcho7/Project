@@ -41,6 +41,7 @@ namespace DrinkShop.Web.Services
             User user = _appDbContext.Users.First(u => u.Id == userId);
             order.User = user;
             _shoppingCartManager.ClearCart();
+
             _appDbContext.SaveChanges();
 
         }
@@ -65,7 +66,6 @@ namespace DrinkShop.Web.Services
         private OrderItem CreateOrderItem()
         {
             var orderItem = new OrderItem();
-            
             return orderItem;
         }
 

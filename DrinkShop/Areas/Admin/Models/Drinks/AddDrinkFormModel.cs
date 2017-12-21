@@ -32,7 +32,7 @@ namespace DrinkShop.Web.Areas.Admin.Models.Drinks
         public string ImageThumbnail { get; set; }
 
         [Required]
-        public bool IsPreferredDrink { get; set; }
+        public bool Preferred { get; set; }
 
         [Required]
         public bool InStock { get; set; }

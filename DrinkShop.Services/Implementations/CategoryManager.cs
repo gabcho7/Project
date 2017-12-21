@@ -22,10 +22,6 @@ namespace DrinkShop.Services.Implementations
             return this.db.Categories.ToList();
         }
 
-        //public bool Create()
-        //{
-
-        //    return true;
-        //}
+       
     }
 }

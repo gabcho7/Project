@@ -3,7 +3,11 @@
 @{
     foreach (Drink drink in Model.Drinks)
     {
-        @Html.Partial("DrinksSummaryPartial", drink)
+        if (drink.InStock == true)
+        {
+            @Html.Partial("DrinksSummaryPartial", drink)
+        }
+
     }
 }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DrinkShop.Services
 {
-   public interface ICategory
+   public interface ICategoryRepository
     {
         IEnumerable<Category> Categories { get; }
     }
